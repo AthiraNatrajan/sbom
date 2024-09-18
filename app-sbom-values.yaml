@@ -1,0 +1,55 @@
+##########################################################################
+# © IBM Confidential
+# PID:  5900-BD6, 5900-BBE
+# © Copyright IBM Corp. 2024
+##########################################################################
+concert:
+  application:
+    output_file: "shopizer.json" # optional
+    app_name: "shopizer"
+    version: "10.91"
+    business:
+      name: "shopizer"
+      units:
+      - name: "IBM Security"
+        email: "athira.N1@ibm.com"
+        phone: "123-456-7890"
+    properties:
+      application_criticality: "5"
+    components:
+    - component_name: "shopizer"
+      repository:
+        name: "shopizer"
+        url: "github.com/AthiraNatrajan/shopizer"
+      image:
+        name: "shopizer"
+    - component_name: "shopizer-admin"
+      repository:
+        name: "shopizer-admin"
+        url: "github.com/AthiraNatrajan/shopizer-admin"
+      image:
+        name: "shopizer-admin"
+    - component_name: "shopizer-shop-reactjs"
+      repository:
+        name: "shopizer-shop-reactjs"
+        url: "github.com/AthiraNatrajan/shopizer-shop-reactjs"
+      image:
+        name: "shopizer-shop-reactjs"
+    - component_name: "mysql-server"
+      repository:
+        name: "mysql-server"
+        url: "github.com/AthiraNatrajan/mysql"
+      image:
+        name: "mysql-server"
+    environment_targets:
+    - name: "dev"
+    - name: "prod"
+    services:
+    - name: "my_public_access_endpoint_name"
+      type: "app_end_point"
+      endpoints: 
+       - "/home"
+      properties:
+        network_exposure: "public"
+      reliant_by:
+      - "shopizer"
