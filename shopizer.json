@@ -1,0 +1,142 @@
+{
+    "bomFormat": "ConcertDef",
+    "specVersion": "1.0",
+    "serialNumber": "urn:ibm:appmgmt:shopizer",
+    "version": 1,
+    "metadata": {
+        "timestamp": "2024-09-18T05:20:01Z",
+        "component": {
+            "bom-ref": "shopizer",
+            "type": "application",
+            "name": "shopizer",
+            "version": "10.91"
+        },
+        "business": {
+            "name": "shopizer",
+            "units": [
+                {
+                    "name": "IBM Security",
+                    "email": "athira.N1@ibm.com",
+                    "phone": "123-456-7890"
+                }
+            ]
+        }
+    },
+    "components": [
+        {
+            "bom-ref": "build:shopizer",
+            "type": "build",
+            "name": "shopizer",
+            "components": [
+                {
+                    "bom-ref": "img:shopizer",
+                    "type": "container",
+                    "name": "shopizer",
+                    "purl": "shopizer"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:shopizer",
+                    "type": "code",
+                    "name": "shopizer",
+                    "purl": "github.com/AthiraNatrajan/shopizer"
+                }
+            ]
+        },
+        {
+            "bom-ref": "build:shopizer-admin",
+            "type": "build",
+            "name": "shopizer-admin",
+            "components": [
+                {
+                    "bom-ref": "img:shopizer-admin",
+                    "type": "container",
+                    "name": "shopizer-admin",
+                    "purl": "shopizer-admin"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:shopizer-admin",
+                    "type": "code",
+                    "name": "shopizer-admin",
+                    "purl": "github.com/AthiraNatrajan/shopizer-admin"
+                }
+            ]
+        },
+        {
+            "bom-ref": "build:shopizer-shop-reactjs",
+            "type": "build",
+            "name": "shopizer-shop-reactjs",
+            "components": [
+                {
+                    "bom-ref": "img:shopizer-shop-reactjs",
+                    "type": "container",
+                    "name": "shopizer-shop-reactjs",
+                    "purl": "shopizer-shop-reactjs"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:shopizer-shop-reactjs",
+                    "type": "code",
+                    "name": "shopizer-shop-reactjs",
+                    "purl": "github.com/AthiraNatrajan/shopizer-shop-reactjs"
+                }
+            ]
+        },
+        {
+            "bom-ref": "build:mysql-server",
+            "type": "build",
+            "name": "mysql-server",
+            "components": [
+                {
+                    "bom-ref": "img:mysql-server",
+                    "type": "container",
+                    "name": "mysql-server",
+                    "purl": "mysql-server"
+                },
+                {
+                    "bom-ref": "repository:coderepo:github:mysql-server",
+                    "type": "code",
+                    "name": "mysql-server",
+                    "purl": "github.com/AthiraNatrajan/mysql"
+                }
+            ]
+        },
+        {
+            "bom-ref": "environment:dev",
+            "type": "environment",
+            "name": "dev"
+        },
+        {
+            "bom-ref": "environment:prod",
+            "type": "environment",
+            "name": "prod"
+        }
+    ],
+    "services": [
+        {
+            "bom-ref": "appapi:my_public_access_endpoint_name",
+            "name": "my_public_access_endpoint_name",
+            "endpoints": [
+                "/home"
+            ],
+            "properties": [
+                {
+                    "name": "network_exposure",
+                    "value": "public"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "ref": "build:shopizer",
+            "dependsOn": [
+                "appapi:my_public_access_endpoint_name"
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "application_criticality",
+            "value": "5"
+        }
+    ]
+}
